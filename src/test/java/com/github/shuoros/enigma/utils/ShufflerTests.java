@@ -1,5 +1,7 @@
 package com.github.shuoros.enigma.utils;
 
+import com.github.shuoros.enigma.key.Alphabets;
+import com.github.shuoros.enigma.key.Languages;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -12,7 +14,7 @@ public class ShufflerTests {
         char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
         // When
-        char[] shuffled = Shuffler.shuffle(Rotor.ALPHABET);
+        char[] shuffled = Shuffler.shuffle(Alphabets.get(Languages.ENGLISH));
 
         // Then
         assertNotEquals(alphabet, shuffled);

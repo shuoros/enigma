@@ -1,5 +1,6 @@
 package com.github.shuoros.enigma.utils;
 
+import com.github.shuoros.enigma.key.Languages;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,7 +14,7 @@ public class ReflectorTests {
         char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
         // When
-        Reflector reflector = new Reflector();
+        Reflector reflector = new Reflector(Languages.ENGLISH);
 
         // Then
         assertNotEquals(alphabet, reflector.me());

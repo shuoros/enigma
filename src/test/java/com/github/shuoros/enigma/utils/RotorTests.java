@@ -1,5 +1,6 @@
 package com.github.shuoros.enigma.utils;
 
+import com.github.shuoros.enigma.key.Languages;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,24 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class RotorTests {
 
     @Test
-    public void shuffleMustShuffleTheAlphabet() {
-        // Given
-        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-
-        // When
-        char[] shuffled = Shuffler.shuffle(Rotor.ALPHABET);
-
-        // Then
-        assertNotEquals(alphabet, shuffled);
-    }
-
-    @Test
     public void alphabetMustBeShuffledOnRotorsCreation() {
         // Given
         char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
         // When
-        Rotor rotor = new Rotor();
+        Rotor rotor = new Rotor(Languages.ENGLISH);
 
         // Then
         assertNotEquals(alphabet, rotor.me());
@@ -34,7 +23,7 @@ public class RotorTests {
     @Test
     public void indexOfRotorMustBe0WhenRotorIsCreated() {
         // Given
-        Rotor rotor = new Rotor();
+        Rotor rotor = new Rotor(Languages.ENGLISH);
 
         // When
         int index = rotor.index();
@@ -46,7 +35,7 @@ public class RotorTests {
     @Test
     public void indexMustBeSetInDesiredPositionCorrectly() {
         // Given
-        Rotor rotor = new Rotor();
+        Rotor rotor = new Rotor(Languages.ENGLISH);
         int desiredLocation = 5;
 
         // When

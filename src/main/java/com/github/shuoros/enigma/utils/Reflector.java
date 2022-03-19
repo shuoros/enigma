@@ -1,13 +1,16 @@
 package com.github.shuoros.enigma.utils;
 
+import com.github.shuoros.enigma.key.Alphabets;
+import com.github.shuoros.enigma.key.Languages;
+
 public class Reflector {
 
     private static final char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
     private char[] reflector;
 
-    public Reflector() {
-        this(Shuffler.shuffle(ALPHABET));
+    public Reflector(Languages language) {
+        this(Shuffler.shuffle(Alphabets.get(language)));
     }
 
     public Reflector(char[] reflector) {

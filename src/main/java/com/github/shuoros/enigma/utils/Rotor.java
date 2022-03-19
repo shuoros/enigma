@@ -1,15 +1,17 @@
 package com.github.shuoros.enigma.utils;
 
+import com.github.shuoros.enigma.key.Alphabets;
+import com.github.shuoros.enigma.key.Languages;
+
 public class Rotor {
 
-    public static final char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
     private final char[] rotor;
     private int position;
 
 
-    public Rotor() {
-        this(Shuffler.shuffle(ALPHABET));
+    public Rotor(Languages language) {
+        this(Shuffler.shuffle(Alphabets.get(language)));
     }
 
     public Rotor(char[] rotor) {

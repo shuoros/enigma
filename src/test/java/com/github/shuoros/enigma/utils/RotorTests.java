@@ -13,7 +13,7 @@ public class RotorTests {
         char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
         // When
-        char[] shuffled = Rotor.shuffle();
+        char[] shuffled = Shuffler.shuffle(Rotor.ALPHABET);
 
         // Then
         assertNotEquals(alphabet, shuffled);

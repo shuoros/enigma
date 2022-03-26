@@ -1,48 +1,78 @@
 package com.github.shuoros.enigma.utils;
 
-import com.github.shuoros.enigma.key.Languages;
+import com.github.shuoros.enigma.alphabet.Languages;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RotorTests {
 
     @Test
     public void alphabetMustBeShuffledOnRotorsCreation() {
         // Given
-        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        char[] alphabet = "abcdefghijklmnopqrstuvwxyz .,;:!?'\"()".toCharArray();
 
         // When
         Rotor rotor = new Rotor(Languages.ENGLISH);
 
         // Then
-        assertNotEquals(alphabet, rotor.me());
+        assertFalse(Arrays.equals(alphabet, rotor.me()));
     }
 
     @Test
-    public void indexOfRotorMustBe0WhenRotorIsCreated() {
+    public void sizeMustBeSameAsAlphabetLength() {
         // Given
-        Rotor rotor = new Rotor(Languages.ENGLISH);
+        int expectedSize = "abcdefghijklmnopqrstuvwxyz .,;:!?'\"()".length();
 
         // When
-        int index = rotor.index();
+        Rotor rotor = new Rotor(Languages.ENGLISH);
 
         // Then
-        assertEquals(0, index);
+        assertEquals(expectedSize, rotor.size());
     }
 
     @Test
-    public void indexMustBeSetInDesiredPositionCorrectly() {
+    public void shiftMustShiftTheRotorOneCharToRight() {
         // Given
-        Rotor rotor = new Rotor(Languages.ENGLISH);
-        int desiredLocation = 5;
+        char[] alphabet = "abcdefghijklmnopqrstuvwxyz .,;:!?'\"()".toCharArray();
+        char[] shiftedAlphabet = "bcdefghijklmnopqrstuvwxyz .,;:!?'\"()a".toCharArray();
 
         // When
-        rotor.setIndex(desiredLocation);
+        Rotor rotor = new Rotor(alphabet, Languages.ENGLISH);
+        rotor.shift();
 
         // Then
-        assertEquals(desiredLocation, rotor.index());
+        assertArrayEquals(shiftedAlphabet, rotor.me());
+    }
+
+    @Test
+    public void rotateMustRotateACharInRotorCorrectly(){
+        // Given
+        char[] alphabet = "abcdefghijklmnopqrstuvwxyz .,;:!?'\"()".toCharArray();
+        char[] shuffledAlphabet = "bcdefghijklmnopqrstuvwxyza .,;:!?'\"()a".toCharArray();
+
+        // When
+        Rotor rotor = new Rotor(shuffledAlphabet, Languages.ENGLISH);
+        char rotatedChar = rotor.rotate(alphabet[0]);
+
+        // Then
+        assertEquals(shuffledAlphabet[0], rotatedChar);
+    }
+
+    @Test
+    public void reverseRotateMustRotateACharInRotorCorrectly(){
+        // Given
+        char[] alphabet = "abcdefghijklmnopqrstuvwxyz .,;:!?'\"()".toCharArray();
+        char[] shuffledAlphabet = "bcdefghijklmnopqrstuvwxyza .,;:!?'\"()a".toCharArray();
+
+        // When
+        Rotor rotor = new Rotor(shuffledAlphabet, Languages.ENGLISH);
+        char reversedRotatedChar = rotor.reverseRotate(shuffledAlphabet[0]);
+
+        // Then
+        assertEquals(alphabet[0], reversedRotatedChar);
     }
 
 }

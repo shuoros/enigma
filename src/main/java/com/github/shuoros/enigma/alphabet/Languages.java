@@ -1,4 +1,4 @@
-package com.github.shuoros.enigma.key;
+package com.github.shuoros.enigma.alphabet;
 
 public enum Languages {
 

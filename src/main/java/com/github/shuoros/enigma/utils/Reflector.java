@@ -1,11 +1,9 @@
 package com.github.shuoros.enigma.utils;
 
-import com.github.shuoros.enigma.key.Alphabets;
-import com.github.shuoros.enigma.key.Languages;
+import com.github.shuoros.enigma.alphabet.Alphabets;
+import com.github.shuoros.enigma.alphabet.Languages;
 
 public class Reflector {
-
-    private static final char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
     private char[] reflector;
 
@@ -21,18 +19,14 @@ public class Reflector {
         return reflector;
     }
 
-    public void setReflector(char[] reflector) {
-        this.reflector = reflector;
-    }
-
     public char reflect(char letter) {
         int index = find(letter);
         return reflector[reflector.length - index - 1];
     }
 
-    public int find(char letter) {
-        for (int i = 0; i < ALPHABET.length; i++) {
-            if (letter == ALPHABET[i]) {
+    private int find(char letter) {
+        for (int i = 0; i < this.reflector.length; i++) {
+            if (letter == this.reflector[i]) {
                 return i;
             }
         }
